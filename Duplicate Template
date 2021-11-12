@@ -1,0 +1,36 @@
+#
+import json
+import datetime
+from QuipClient import QuipClient
+from dateutil.relativedelta import *
+
+
+
+def lambda_handler(event, context):
+    
+    #On this case the meeting was daily and thus everyday I would create a file for the next day, thus tomorrow.
+    
+    #TIMING SECTION
+    
+    tomorrow = datetime.datetime.now() + relativedelta(days=1)
+    tomorrow = str(tomorrow.strftime("%d/%m/%Y"))[:-5]
+    
+    
+    ACCESS_TOKEN="your_api_access_token"
+
+    client = QuipClient(request_timeout = 30, access_token = ACCESS_TOKEN, base_url="https://platform.quip-amazon.com")
+    user = client.get_authenticated_user()
+
+
+    yourtemplate_id = ''
+    yourfolder_id = ['']
+    dic = {'TEMPLATE':'', 'date': tomorrow}
+
+    new_daily_call = client.copy_document(thread_id = yourtemplate_id,
+                                          folder_ids = yourfolder_id,
+                                          values = dic)
+    
+    return {
+        'statusCode': 200,
+        'body': json.dumps('It worked!')
+    }
