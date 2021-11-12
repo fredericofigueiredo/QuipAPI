@@ -24,7 +24,7 @@ def lambda_handler(event, context):
 
     yourtemplate_id = ''
     yourfolder_id = ['']
-    dic = {'TEMPLATE':'', 'date': tomorrow}
+    dictionary = {'TEMPLATE':'', 'date': tomorrow}
 
     new_daily_call = client.copy_document(thread_id = yourtemplate_id,
                                           folder_ids = yourfolder_id,
