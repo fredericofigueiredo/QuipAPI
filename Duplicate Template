@@ -16,7 +16,7 @@ def lambda_handler(event, context):
     tomorrow = str(tomorrow.strftime("%d/%m/%Y"))[:-5]
     
     
-    ACCESS_TOKEN="your_api_access_token"
+    your_api_access_token=''
 
     client = QuipClient(request_timeout = 30, access_token = ACCESS_TOKEN, base_url="https://platform.quip-amazon.com")
     user = client.get_authenticated_user()
